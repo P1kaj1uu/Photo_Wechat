@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "puzzle-verify": "../../components/puzzleVerify/index"
+  }
+}

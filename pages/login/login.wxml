@@ -1,0 +1,93 @@
+<!--pages/login/login.wxml-->
+<view class="top-box">
+  <view>Hi~</view>
+  <view class="next-text">欢迎使用校园约拍小程序</view>
+</view>
+<!-- 登录、注册 -->
+<view class="center-box">
+  <view class="nav">
+    <view class="left {{ currentIndex == 1 ?'select' : ''}}" bindtap="toggleLogin" data-code="1">
+      <text>登录</text>
+    </view>
+    <view class="right {{ currentIndex == 0 ?'select' : ''}}" bindtap="toggleLogin" data-code="0">
+      <text>注册</text>
+    </view>
+  </view>
+  <!-- 登录 -->
+  <view class="input-box" hidden="{{ currentIndex == 0 }}">
+    <view class="wei-input">
+      <van-field
+        required
+        clearable
+        value="{{ loginForm.username }}"
+        label="用户名"
+        placeholder="请输入您的用户名"
+        border
+        bind:change="changeValueHandle"
+        data-type="登录用户名"
+      />
+    </view>
+    <view class="wei-input">
+      <van-field
+        password
+        required
+        clearable
+        value="{{ loginForm.password }}"
+        label="密码"
+        placeholder="请输入您的密码"
+        border
+        bind:change="changeValueHandle"
+        data-type="登录密码"
+      />
+    </view>
+  </view>
+  <!-- 注册 -->
+  <view class="input-box" hidden="{{ currentIndex == 1 }}">
+    <view class="wei-input">
+      <van-field
+        required
+        clearable
+        value="{{ registerForm.username }}"
+        label="用户名"
+        placeholder="请输入用户名"
+        border
+        bind:change="changeValueHandle"
+        data-type="注册用户名"
+      />
+    </view>
+    <view class="wei-input">
+      <van-field
+        password
+        required
+        clearable
+        value="{{ registerForm.password }}"
+        label="密码"
+        placeholder="请输入密码"
+        border
+        bind:change="changeValueHandle"
+        data-type="注册密码"
+      />
+    </view>
+    <view class="wei-input">
+      <van-field
+        password
+        required
+        clearable
+        value="{{ registerForm.aginpassword }}"
+        label="确认密码"
+        placeholder="请输入确认密码"
+        border
+        bind:change="changeValueHandle"
+        data-type="注册确认密码"
+      />
+    </view>
+  </view>
+  <view class="sumbit-btn" bindtap="loginRegister">
+    <button class="button" style="background-color: #33ccff;font-size: 30rpx;" type="primary">立即{{ currentIndex == 1 ? '登录' : '注册'}}</button>
+  </view>
+</view>
+<!-- 重影 -->
+<view class="shadow shadow-1"></view>
+<view class="shadow shadow-2"></view>
+<puzzle-verify enable-close="{{true}}" is-show="{{isShowVerify}}" bind:onsuccess="verifySuccess" bind:onerror="verifyError">
+</puzzle-verify>
