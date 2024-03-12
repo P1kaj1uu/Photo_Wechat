@@ -1,2 +1,20 @@
 <!--packageA/pages/myPurchase/myPurchase.wxml-->
-<text>packageA/pages/myPurchase/myPurchase.wxml</text>
+<block wx:if="{{!purchaseGoodsList.length}}">
+  <van-empty description="暂无" />
+</block>
+<block>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{purchaseGoodsList}}" wx:key="id">
+    <van-cell-group>
+      <van-card
+        num="{{item.createTime}}"
+        desc="{{item.content}}"
+        title="{{item.name}}"
+        price="{{item.price}}"
+        tag="已支付"
+      />
+    </van-cell-group>
+    <view slot="right" class="van-swipe-cell_slot red-background" bindtap="deteleFn" data-recordid="{{item.id}}">
+      <view class="van-swipe-cell_slot-container center-row">删除</view>
+    </view>
+  </van-swipe-cell>
+</block>

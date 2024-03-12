@@ -1,2 +1,22 @@
 <!--packageA/pages/myPublish/myPublish.wxml-->
-<text>packageA/pages/myPublish/myPublish.wxml</text>
+<block wx:if="{{!authorGoodsList.length}}">
+  <van-empty description="暂无" />
+</block>
+<block>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{authorGoodsList}}" wx:key="id">
+    <van-cell-group>
+      <van-card
+        desc="{{item.content}}"
+        title="{{item.title}}"
+        thumb="{{item.avatar}}"
+        price="{{item.price}}"
+        tag="{{item.type}}"
+        bindtap="toDetailFn"
+        data-goodsid="{{item.id}}"
+      />
+    </van-cell-group>
+    <view slot="right" class="van-swipe-cell_slot red-background" bindtap="deteleFn" data-goodsid="{{item.id}}">
+      <view class="van-swipe-cell_slot-container center-row">删除</view>
+    </view>
+  </van-swipe-cell>
+</block>

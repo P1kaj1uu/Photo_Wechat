@@ -5,9 +5,10 @@
       <view class="userinfo-avatar">{{currentGoodsList.name ? currentGoodsList.name[0] : currentGoodsList.username[0]}}</view>
       <text class="userinfo-name">{{currentGoodsList.name ? currentGoodsList.name : currentGoodsList.username}}</text>
     </view>
-    <van-button type="primary" size="small" bindtap="callPhone">
-      聊天
-    </van-button>
+    <view wx:if="{{currentGoodsList.userId !== userInfo.id}}">
+      <van-button type="primary" size="small">聊天</van-button>
+      <van-button style="margin-left: 20rpx;" type="info" size="small">购买</van-button>
+    </view>
   </view>
 
   <view class="price">

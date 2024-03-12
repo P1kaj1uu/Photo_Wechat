@@ -1,1 +1,37 @@
 /* packageA/pages/myPublish/myPublish.wxss */
+.center-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.van-swipe-cell_slot {
+  display: inline-block;
+  width: 65px;
+  height: 100%;
+  font-size: 15px;
+  color: #fff;
+}
+.van-swipe-cell_slot-container {
+  height: 100%;
+  width: 100%;
+}
+.red-background{
+  background-color: red;
+}
+.van-card__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #E9967A;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.van-card__desc {
+  margin-top: 5px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 2;
+}
