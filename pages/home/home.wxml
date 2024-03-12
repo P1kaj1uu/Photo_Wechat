@@ -1,2 +1,38 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<van-notice-bar left-icon="volume-o" scrollable text="欢迎访问校园约拍小程序~温馨提醒：发布约拍需求时，请您保证上传约拍的真实性，同时请勿发布违法商品（黄赌毒等）！平台将对您发布的约拍进行审核，请耐心等待审核结果。" />
+<scroll-view scroll-y="true">
+  <!-- banner -->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{banners}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item.imgUrl}}" mode="widthFix" data-goodsid="{{item.id}}" catchtap="show" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 搜索部分开始 -->
+  <view class="search">
+    <image src="/images/search.png"></image>
+    <input name="" value='{{goodSearchName}}' placeholder="请输入约拍关键词" bindinput="toSearch"></input>
+  </view>
+  <!-- 搜索部分结束 -->
+  <!-- 特价列表开始 -->
+  <view class="specialPrice">
+    <view class="title">最新发布</view>
+    <block wx:for="{{goodsList}}" wx:key="id">
+      <view class="goodsList" data-goodsid='{{item.id}}' bindtap='goToDetail'>
+        <image class="goodsPic" src="{{item.avatar}}">
+        </image>
+        <!-- </view> -->
+        <view class="goodsInfo">
+          <view class="goodsTitle ellipsis2">{{item.title}}</view>
+          <view class="goodsContent ellipsis2">{{item.content}}</view>
+          <view class="price">
+            <text class="fl newPrice">￥{{item.price}}</text>
+            <text class="fl oldPrice">￥9999</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 特价列表结束 -->
+</scroll-view>

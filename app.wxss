@@ -1,4 +1,6 @@
 /**app.wxss**/
+@charset 'utf-8';
+@import "utils/font_icon.wxss";
 .container {
   height: 100%;
   display: flex;

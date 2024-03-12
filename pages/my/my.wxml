@@ -1,2 +1,40 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="userinfo" bindtap="viewUserInfo">
+  <view class="userinfo-avatar init-avatar">{{ userInfo.name ? userInfo.name[0] : userInfo.username[0] }}</view>
+  <text class="userinfo-nickname">{{userInfo.name || userInfo.username}}</text>
+</view>
+
+<view class="line-bg1"></view>
+
+<view>
+  <view class="my_column" bindtap="getPurchasedGoods">
+    <label class="ico-moon icon-danmu-send my_c_icon"></label>
+    <text class="my_c_text">我的订单</text>
+  </view>
+  <view class="my_column" bindtap="getMyGoods">
+    <label class="ico-moon icon-notify my_c_icon"></label>
+    <text class="my_c_text">我的发布</text>
+  </view>
+</view>
+
+<view class="line-bg2"></view>
+
+<view class="my_column" bindtap="checkStu">
+  <label class="ico-moon icon-heart my_c_icon"></label>
+  <text class="my_c_text">{{ userInfo.isStuIdentify === 1 ? '已验证学生身份' : '验证学生身份' }}</text>
+</view>
+
+<view class="my_column" bindtap="checkStu">
+  <label class="ico-moon icon-heart my_c_icon"></label>
+  <text class="my_c_text">{{ userInfo.isPhoIdentify === 1 ? '已认证摄影师身份' : '认证摄影师身份' }}</text>
+</view>
+
+<van-popup show="{{ isShowStu }}" round position="bottom" custom-style="height: 15%" bind:close="onClose">
+  <van-cell-group>
+    <van-field value="{{ stuId }}" center clearable label="学号验证" placeholder="请输入您的学号" border="{{ false }}" use-button-slot bind:input="InputId">
+      <van-button slot="button" size="small" type="primary" bindtap="checkInfo">
+        开始验证
+      </van-button>
+    </van-field>
+  </van-cell-group>
+</van-popup>

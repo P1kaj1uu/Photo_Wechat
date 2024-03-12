@@ -6,6 +6,19 @@
     "pages/message/message",
     "pages/my/my"
   ],
+  "subpackages": [
+    {
+      "root": "packageA",
+      "name": "分包A",
+      "pages": [
+        "pages/myInfo/myInfo",
+        "pages/myPurchase/myPurchase",
+        "pages/myPublish/myPublish",
+        "pages/goodDetail/goodDetail"
+      ],
+      "independent": true
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "校园约拍",
@@ -18,19 +31,27 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "images/home-static.png",
+        "selectedIconPath": "images/home-active.png"
       },
       {
         "pagePath": "pages/publish/publish",
-        "text": "发布"
+        "text": "发布",
+        "iconPath": "images/publish-static.png",
+        "selectedIconPath": "images/publish-active.png"
       },
       {
         "pagePath": "pages/message/message",
-        "text": "消息"
+        "text": "消息",
+        "iconPath": "images/message-static.png",
+        "selectedIconPath": "images/message-active.png"
       },
       {
         "pagePath": "pages/my/my",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "images/my-static.png",
+        "selectedIconPath": "images/my-active.png"
       }
     ]
   },
@@ -38,6 +59,11 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "van-field": "@vant/weapp/field/index"
+    "van-field": "@vant/weapp/field/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index"
   }
 }

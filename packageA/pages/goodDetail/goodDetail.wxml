@@ -1,0 +1,76 @@
+<!--packageA/pages/goodDetail/goodDetail.wxml-->
+<view class='container'>
+  <view class="userinfo">
+    <view style="display: flex; justify-content: center; align-items: center;">
+      <view class="userinfo-avatar">{{currentGoodsList.name ? currentGoodsList.name[0] : currentGoodsList.username[0]}}</view>
+      <text class="userinfo-name">{{currentGoodsList.name ? currentGoodsList.name : currentGoodsList.username}}</text>
+    </view>
+    <van-button type="primary" size="small" bindtap="callPhone">
+      聊天
+    </van-button>
+  </view>
+
+  <view class="price">
+    <text class="newPrice">￥{{currentGoodsList.price}}</text>
+    <text class="oldPrice">￥9999</text>
+  </view>
+
+  <view class="goodsCreateTime">
+    {{currentGoodsList.createTime}}
+  </view>
+
+  <view class="goodsDetails">
+    <view class='imagesize'>
+      <image class="goodsPic" src='{{currentGoodsList.avatar}}'></image>
+    </view>
+    <h6>一、约拍标题</h6>
+    <view class="title">{{currentGoodsList.title}}</view>
+    <h6>二、约拍标题</h6>
+    <view class="title">{{currentGoodsList.content}}</view>
+    <h6>三、约拍天数</h6>
+    <view class="title">{{currentGoodsList.continueTime}}</view>
+    <h6>四、约拍地点</h6>
+    <view class="title">{{currentGoodsList.position}}</view>
+    <h6>五、约拍类型</h6>
+    <view class="title">{{currentGoodsList.type}}</view>
+    <h6>六、约拍类型</h6>
+    <view class="title">{{currentGoodsList.type}}</view>
+    <h6>七、联系方式</h6>
+    <view class="title">{{currentGoodsList.phone}}</view>
+    <h6>八、温馨提示</h6>
+    <view class="title">
+      <view>1.平台禁止一切色情私房约拍</view>
+      <view>2.切勿独自与陌生人在室内约拍</view>
+      <view>3.切勿轻易相信未见面先交纳费用或定金的合作，发生经济纠纷平台概不负责</view>
+    </view>
+  </view>
+</view>
+
+<view class="line-bg"></view>
+
+<view class="message-container">
+  <view class="message_count">
+    <text>留言 · {{msgCount}}</text>
+  </view>
+
+  <block wx:for="{{messageList}}" wx:key="messageId">
+    <view class="message_info" bindtap="toReplay" data-messageid='{{item.messageId}}' data-username='{{item.userName}}'>
+      <view class="head">
+        <image class="userAvatar" src="{{item.userImage}}"></image>
+        <text class="userName">{{item.userName}}</text>
+        <text class="replayUserName" wx:if="{{item.replayUserName}}">回复@{{item.replayUserName}}</text>
+      </view>
+      <view class="content">
+        {{item.comment}}
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 添加留言区域 -->
+<form bindsubmit="saveMessage">
+  <view class='message_box'>
+    <input name='inputMsg' class='input' type='text' placeholder='{{phValue}}' placeholder-class='place-input' value="{{inputTxt}}" focus="{{focus}}"></input>
+    <button formType="submit" class="btn">发 送</button>
+  </view>
+</form>

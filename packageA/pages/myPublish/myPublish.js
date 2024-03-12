@@ -1,32 +1,13 @@
-var app = getApp()
+// packageA/pages/myPublish/myPublish.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: null,
-    isShowStu: false,
-    isShowPho: false,
+
   },
-  // 跳转查看个人资料
-  viewUserInfo() {
-    wx.navigateTo({
-      url: '../../packageA/pages/myInfo/myInfo',
-    })
-  },
-  // 跳转我的订单
-  getPurchasedGoods() {
-    wx.navigateTo({
-      url: '../../packageA/pages/myPurchase/myPurchase',
-    })
-  },
-  // 跳转我的发布
-  getMyGoods() {
-    wx.navigateTo({
-      url: '../../packageA/pages/myPublish/myPublish',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,9 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setData({
-      userInfo: wx.getStorageSync('userInfo')
-    })
+
   },
 
   /**

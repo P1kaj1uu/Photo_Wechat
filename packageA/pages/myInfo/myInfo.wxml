@@ -1,0 +1,42 @@
+<!--packageA/pages/myInfo/myInfo.wxml-->
+<view class="myinfo">
+  <van-cell-group>
+    <van-cell title="用户名" value="{{userInfo.username}}" />
+    <van-cell title="名称" value="{{userInfo.name || '暂无'}}" />
+    <van-cell title="简介" value="{{userInfo.info || '暂无'}}" />
+    <block wx:if="{{userInfo.isStuIdentify}}">
+      <van-cell title="学号" value="{{userInfo.stuNumber}}" />
+    </block>
+    <van-cell title="人员" value="{{userInfo.role}}" />
+    <van-cell title="学生" value="{{userInfo.isStuIdentify === '1' ? '已验证' : '未验证'}}" />
+    <van-cell title="摄影师" value="{{userInfo.isPhoIdentify === '1' ? '已认证' : '未认证'}}" />
+  </van-cell-group>
+  <view class="btns">
+    <van-button type="primary" size="small" bindtap="infoHandle">修改资料</van-button>
+    <van-button type="primary" size="small" bindtap="passwordHandle">修改密码</van-button>
+    <van-button type="danger" size="small" bindtap="logoutHandle">退出登录</van-button>
+  </view>
+</view>
+
+<van-popup show="{{ isShowPassword }}" round position="bottom" custom-style="height: 15%" bind:close="onClose">
+  <van-cell-group>
+    <van-field value="{{ password }}" center clearable data-type="新密码" label="新密码" placeholder="请输入您的新密码" border="{{ false }}" use-button-slot bind:change="changeValueHandle">
+      <van-button slot="button" size="small" type="primary" bindtap="changePassword">
+        确认修改
+      </van-button>
+    </van-field>
+  </van-cell-group>
+</van-popup>
+
+<van-popup show="{{ isShowInfo }}" round position="bottom" custom-style="height: 25%" bind:close="onClose">
+  <van-cell-group>
+    <van-field value="{{ name }}" center clearable data-type="新名称" label="新名称" placeholder="请输入您的新名称" border="{{ false }}" use-button-slot bind:change="changeValueHandle">
+    </van-field>
+    <van-field value="{{ info }}" center clearable data-type="新简介" label="新简介" placeholder="请输入您的新简介" maxlength="{{15}}" border="{{ false }}" use-button-slot bind:change="changeValueHandle">
+    </van-field>
+  </van-cell-group>
+  <view style="display: flex; align-items: center; justify-content: space-around;">
+    <van-button type="primary" size="small" bindtap="okInfo">确定修改</van-button>
+    <van-button type="info" size="small" bindtap="closeInfo">取消修改</van-button>
+  </view>
+</van-popup>

@@ -1,13 +1,109 @@
 // pages/home/home.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    banners:[
+      { "id": 1, "bannerName": "约拍1", "imgUrl": "/images/banner01.jpg", "clickUrl": "", "seq": 1 },
+      { "id": 2, "bannerName": "约拍2", "imgUrl": "/images/banner02.jpg", "clickUrl": "", "seq": 2 }, 
+      { "id": 3, "bannerName": "约拍3", "imgUrl": "/images/banner03.jpg", "clickUrl": null, "seq": 3 }
+    ],                                 
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000,
+    goodSearchName: '',
+    userInfo: null,
+    goodsList: [],
+    pageNum: 1,
+    pageSize: 100,
   },
-
+  toSearch(e) {
+    let that = this;
+    let value = e.detail.value;
+    that.setData({
+      goodSearchName: value
+    })
+    if (!value) {
+      // 输入框值为空时，查询全部
+      that.getAllGoods();
+    } else {
+      // 模糊查询
+      wx.request({
+        url: app.globalData.siteBaseUrl + '/goods/wx',
+        method: 'GET',
+        header: {
+          'Content-Type': 'application/json',
+          'X-Token': that.data.userInfo.token
+        },
+        data: {
+          "title": that.data.goodSearchName
+        },
+        success: function(res) {
+          console.log('模糊查询商品--->', res)
+          if (res.data.code === 401) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 2000,
+            })
+            wx.setStorageSync('userInfo', null);
+            wx.navigateTo({
+              url: '../login/login',
+            })
+            return;
+          }
+          that.setData({
+            goodsList: res.data.data
+          })
+        },
+      })
+    }
+  },
+  // 查询全部商品
+  getAllGoods() {
+    let that = this;
+    wx.request({
+      url: app.globalData.siteBaseUrl + '/goods/list',
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json',
+        'X-Token': that.data.userInfo.token
+      },
+      data: {
+        "pageNum": that.data.pageNum,
+        "pageSize": that.data.pageSize
+      },
+      success: function(res) {
+        console.log('获取全部商品--->', res)
+        if (res.data.code === 401) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+          })
+          wx.setStorageSync('userInfo', null);
+          wx.navigateTo({
+            url: '../login/login',
+          })
+          return;
+        }
+        that.setData({
+          goodsList: res.data.data.list
+        })
+      }
+    })
+  },
+  // 前往约拍商品详情页
+  goToDetail(e) {
+    let id = e.currentTarget.dataset.goodsid;
+    wx.navigateTo({
+      url: '../../packageA/pages/goodDetail/goodDetail?goodsId=' + id
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +122,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo')
+    })
+    this.getAllGoods();
   },
 
   /**

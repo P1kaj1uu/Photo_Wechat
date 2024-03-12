@@ -27,7 +27,6 @@ Page({
       name: null,
       username: this.data.registerForm.username,
       password: this.data.registerForm.password,
-      avatar: null,
       info: null,
       photoNumber: null,
       isStuIdentify: 0,
@@ -36,37 +35,37 @@ Page({
     }
     wx.request({
       url: app.globalData.siteBaseUrl + '/user/add',
-        method: 'POST',
-        header: {
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(user),
-        success: function (res) {
-          console.log('注册--->', res)
-          if (res.data.code !== 200) {
-            wx.showToast({
-              title: '注册失败，用户名重复',
-              icon: 'none',
-              duration: 2000,
-            })
-            return;
-          } else {
-            wx.showToast({
-              title: '注册成功',
-              icon: 'none',
-              duration: 2000,
-            })
-            that.setData({
-              isShowVerify: false,
-              currentIndex: 1,
-              registerForm: {
-                username: '',
-                password: '',
-                aginpassword: '',
-              }
-            })
-          }
-        },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(user),
+      success: function (res) {
+        console.log('注册--->', res)
+        if (res.data.code !== 200) {
+          wx.showToast({
+            title: '注册失败，用户名重复',
+            icon: 'none',
+            duration: 2000,
+          })
+          return;
+        } else {
+          wx.showToast({
+            title: '注册成功',
+            icon: 'none',
+            duration: 2000,
+          })
+          that.setData({
+            isShowVerify: false,
+            currentIndex: 1,
+            registerForm: {
+              username: '',
+              password: '',
+              aginpassword: '',
+            }
+          })
+        }
+      },
     })
   },
   // 滑块拼图验证失败
