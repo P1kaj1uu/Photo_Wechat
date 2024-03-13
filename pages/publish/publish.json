@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "发布中心",
-  "usingComponents": {}
+  "navigationBarTitleText": "发布约拍",
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
+  }
 }

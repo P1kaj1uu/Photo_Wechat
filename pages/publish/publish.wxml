@@ -1,2 +1,123 @@
 <!--pages/publish/publish.wxml-->
-<text>pages/publish/publish.wxml</text>
+<van-notice-bar
+  left-icon="volume-o"
+  scrollable
+  text="温馨提醒：发布约拍需求时，请您保证上传约拍的真实性，同时请勿发布违法内容（黄赌毒等）！平台将对您发布的约拍进行审核，请耐心等待审核结果。"
+/>
+<form bindsubmit="saveGoods">
+  <view class="weui-cells weui-cells_after-title page">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍标题</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          name="title"
+          clearable
+          placeholder="请输入约拍标题"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍内容</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          name="content"
+          clearable
+          placeholder="请输入约拍内容"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍价格</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          bind:input="changeNum"
+          name="price"
+          type="digit"
+          clearable
+          placeholder="请输入约拍价格"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍天数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          bind:input="changeNum"
+          name="continuetime"
+          type="digit"
+          clearable
+          placeholder="请输入约拍天数"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍地点</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          name="position"
+          clearable
+          placeholder="请输入约拍地点"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍类型</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          name="type"
+          clearable
+          placeholder="请输入约拍类型"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">联系方式</view>
+      </view>
+      <view class="weui-cell__bd">
+        <van-field
+          bind:input="checkPhone"
+          name="phone"
+          clearable
+          type="number"
+          placeholder="请输入手机号码"
+          border="{{ false }}"
+        />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">约拍封面</view>
+      </view>
+    </view>
+
+    <view class="image_content">
+      <view class='image' wx:for="{{img_url}}">
+        <image class="moment_img" mode="aspectFill" data-index='{{index}}' src="{{item}}" bindtap="previewImg"></image>
+      </view>
+      <view class='image' style='display:{{hideAdd ?"none" : "block"}}'>
+        <image bindtap="chooseImage" class="moment_img" src='/images/addGoods.png'></image>
+      </view>
+    </view>
+
+    <button class="my_button" type="primary" form-type="submit">发布</button>
+  </view>
+</form>

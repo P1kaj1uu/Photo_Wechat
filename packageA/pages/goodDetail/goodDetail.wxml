@@ -2,43 +2,41 @@
 <view class='container'>
   <view class="userinfo">
     <view style="display: flex; justify-content: center; align-items: center;">
-      <view class="userinfo-avatar">{{currentGoodsList.name ? currentGoodsList.name[0] : currentGoodsList.username[0]}}</view>
-      <text class="userinfo-name">{{currentGoodsList.name ? currentGoodsList.name : currentGoodsList.username}}</text>
+      <view class="userinfo-avatar">{{currentGoodsList[0].name ? currentGoodsList[0].name[0] : currentGoodsList[0].username[0]}}</view>
+      <text class="userinfo-name">{{currentGoodsList[0].name ? currentGoodsList[0].name : currentGoodsList[0].username}}</text>
     </view>
-    <view wx:if="{{currentGoodsList.userId !== userInfo.id}}">
+    <view wx:if="{{currentGoodsList[0].userId !== userInfo.id}}">
       <van-button type="primary" size="small">聊天</van-button>
-      <van-button style="margin-left: 20rpx;" type="info" size="small">购买</van-button>
+      <van-button style="margin-left: 20rpx;" type="info" size="small" bindtap="purchaseHandle">购买</van-button>
     </view>
   </view>
 
   <view class="price">
-    <text class="newPrice">￥{{currentGoodsList.price}}</text>
+    <text class="newPrice">￥{{currentGoodsList[0].price}}</text>
     <text class="oldPrice">￥9999</text>
   </view>
 
   <view class="goodsCreateTime">
-    {{currentGoodsList.createTime}}
+    {{currentGoodsList[0].createTime}}
   </view>
 
   <view class="goodsDetails">
     <view class='imagesize'>
-      <image class="goodsPic" src='{{currentGoodsList.avatar}}'></image>
+      <image class="goodsPic" src='{{currentGoodsList[0].avatar}}'></image>
     </view>
     <h6>一、约拍标题</h6>
-    <view class="title">{{currentGoodsList.title}}</view>
-    <h6>二、约拍标题</h6>
-    <view class="title">{{currentGoodsList.content}}</view>
+    <view class="title">{{currentGoodsList[0].title}}</view>
+    <h6>二、约拍内容</h6>
+    <view class="title">{{currentGoodsList[0].content}}</view>
     <h6>三、约拍天数</h6>
-    <view class="title">{{currentGoodsList.continueTime}}</view>
+    <view class="title">{{currentGoodsList[0].continueTime}}</view>
     <h6>四、约拍地点</h6>
-    <view class="title">{{currentGoodsList.position}}</view>
+    <view class="title">{{currentGoodsList[0].position}}</view>
     <h6>五、约拍类型</h6>
-    <view class="title">{{currentGoodsList.type}}</view>
-    <h6>六、约拍类型</h6>
-    <view class="title">{{currentGoodsList.type}}</view>
-    <h6>七、联系方式</h6>
-    <view class="title">{{currentGoodsList.phone}}</view>
-    <h6>八、温馨提示</h6>
+    <view class="title">{{currentGoodsList[0].type}}</view>
+    <h6>六、联系方式</h6>
+    <view class="title">{{currentGoodsList[0].phone}}</view>
+    <h6>七、温馨提示</h6>
     <view class="title">
       <view>1.平台禁止一切色情私房约拍</view>
       <view>2.切勿独自与陌生人在室内约拍</view>
@@ -51,27 +49,48 @@
 
 <view class="message-container">
   <view class="message_count">
-    <text>留言 · {{msgCount}}</text>
+    <text>评论/评价 · {{msgCount}}</text>
   </view>
 
-  <block wx:for="{{messageList}}" wx:key="messageId">
-    <view class="message_info" bindtap="toReplay" data-messageid='{{item.messageId}}' data-username='{{item.userName}}'>
+  <block wx:for="{{commentList}}" wx:key="id">
+    <view class="message_info">
       <view class="head">
-        <image class="userAvatar" src="{{item.userImage}}"></image>
-        <text class="userName">{{item.userName}}</text>
-        <text class="replayUserName" wx:if="{{item.replayUserName}}">回复@{{item.replayUserName}}</text>
+        <view class="userAvatar">{{item.name[0]}}</view>
+        <view class="userName">{{item.name}}</view>
+        <view class="time">{{item.createTime}}</view>
       </view>
       <view class="content">
-        {{item.comment}}
+        {{item.content}}
+      </view>
+      <view class="exact">
+        <view wx:if="{{item.userId !== userInfo.id}}" class="delete" bindtap="reportComment" data-commentname="{{item.content}}">举报</view>
+        <view wx:if="{{item.userId === userInfo.id}}"  class="delete" bindtap="deleteComment" data-commentid='{{item.id}}'>删除</view>
       </view>
     </view>
   </block>
 </view>
 
 <!-- 添加留言区域 -->
-<form bindsubmit="saveMessage">
+<form bindsubmit="addComment">
   <view class='message_box'>
-    <input name='inputMsg' class='input' type='text' placeholder='{{phValue}}' placeholder-class='place-input' value="{{inputTxt}}" focus="{{focus}}"></input>
+    <input name='inputMsg' class='input' type='text' placeholder='请输入您的评论/评价' 
+    bindinput="changeValueHandle"
+    placeholder-class='place-input' value="{{commentValue}}" ></input>
     <button formType="submit" class="btn">发 送</button>
   </view>
 </form>
+
+<van-dialog
+  id="van-dialog"
+  use-slot
+  show="{{ isDialogShow }}"
+  title="选择支付方式"
+  show-cancel-button
+  bind:close="onDialogClose"
+>
+  <van-radio-group value="{{ radio }}"   bind:change="onChangeRadio">
+    <block wx:for="{{typeList}}" wx:key="id">
+      <van-radio name="{{item.id}}">{{item.name}}</van-radio>
+    </block>
+  </van-radio-group>
+</van-dialog>

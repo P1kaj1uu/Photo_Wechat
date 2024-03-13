@@ -121,53 +121,52 @@ page {
 }
 
 .message_info .head {
+  position: relative;
   display: -webkit-flex;
   display: flex;
   width: 100%;
-  height: 80rpx;
-  /* border: 1px solid #f03; */
+  height: 60rpx;
 }
 
 .message_info .head .userAvatar {
   width: 80rpx;
   height: 80rpx;
-  border-radius: 15%;
+  border-radius: 50%;
+  background-color: blue;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .message_info .head .userName {
   position: relative;
-  font-size: 29rpx;
+  font-size: 44rpx;
   font-weight: bold;
   margin-left: 15rpx;
-  margin-top: 30rpx;
 }
 
-.message_info .head .replayUserName {
-  font-size: 29rpx;
-  margin-left: 9rpx;
-  margin-top: 32rpx;
-}
-
-/* .message_info .head .answerBtn{
-  position: relative;
-  float: right;
-  margin-right: 0;
-  padding: 0;
-
-  width: 100rpx;
-  height: 60rpx;
-  font-size: 28rpx; 
-  line-height:58rpx;
-  text-align:center;
-  vertical-align: middle;
-  color: #fa4f85;
-  font-weight: bold;
-  background-color: #fff;
-  border:1px solid #fa4f85;
-} */
 .message_info .content {
   font-size: 30rpx;
   margin-left: 95rpx;
+}
+
+.message_info .time {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 24rpx;
+}
+
+.message_info .exact {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.message_info .exact .delete {
+  color: #888;
+  font-size: 12px;
 }
 
 /* 添加留言 */

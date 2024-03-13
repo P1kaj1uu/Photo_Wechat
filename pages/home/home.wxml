@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<van-notice-bar left-icon="volume-o" scrollable text="欢迎访问校园约拍小程序~温馨提醒：发布约拍需求时，请您保证上传约拍的真实性，同时请勿发布违法商品（黄赌毒等）！平台将对您发布的约拍进行审核，请耐心等待审核结果。" />
+<van-notice-bar left-icon="volume-o" text="欢迎访问校园约拍小程序~" />
 <scroll-view scroll-y="true">
   <!-- banner -->
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">

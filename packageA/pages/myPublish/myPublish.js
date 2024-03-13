@@ -77,8 +77,12 @@ Page({
           })
           return;
         }
+        let list = res.data.data;
+        list.forEach(item => {
+          item.avatar = "../../../static" + item.avatar
+        })
         that.setData({
-          authorGoodsList: res.data.data
+          authorGoodsList: list
         })
       }
     })

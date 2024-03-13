@@ -1,1 +1,57 @@
 /* pages/publish/publish.wxss */
+@import '/utils/weui.wxss';
+
+.page {
+  padding: 7px
+}
+
+view {
+  font-size: 36rpx;
+  font-family: '微软雅黑';
+}
+
+.weui-cells:before {
+  top: 0;
+  border-top: 1rpx solid white;
+}
+
+.weui-cell {
+  line-height: 3.5rem;
+}
+
+.weui-cells:after {
+  bottom: 0;
+  border-bottom: 1rpx solid white;
+}
+
+.weui-label::before {
+  display: inline-block;
+  content: '*';
+  color: red;
+  margin-left: -0.5rem;
+}
+
+.my_button {
+  width: 80%;
+  background-color: #fa4f85 !important;
+}
+
+.image_content {
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  float: left;
+  margin-left: 14px;
+  margin-bottom: 12px;
+  width: 100px;
+  height: 100px;
+  border: 2px rgb(223, 220, 220) dashed;
+  text-align: left;
+}
+
+.moment_img {
+  width: 98px;
+  height: 98px;
+}

@@ -56,8 +56,12 @@ Page({
             })
             return;
           }
+          let list = res.data.data;
+          list.forEach(item => {
+            item.avatar = '../../static' + item.avatar
+          })
           that.setData({
-            goodsList: res.data.data
+            goodsList: list
           })
         },
       })
@@ -91,8 +95,12 @@ Page({
           })
           return;
         }
+        let list = res.data.data.list;
+        list.forEach(item => {
+          item.avatar = '../../static' + item.avatar
+        })
         that.setData({
-          goodsList: res.data.data.list
+          goodsList: list
         })
       }
     })
