@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "系统消息",
+  "usingComponents": {
+    "van-empty": "@vant/weapp/empty/index"
+  }
+}

@@ -6,7 +6,7 @@
       <text class="userinfo-name">{{currentGoodsList[0].name ? currentGoodsList[0].name : currentGoodsList[0].username}}</text>
     </view>
     <view wx:if="{{currentGoodsList[0].userId !== userInfo.id}}">
-      <van-button type="primary" size="small">聊天</van-button>
+      <van-button type="primary" size="small" bindtap="chatHandle" data-otherid="{{currentGoodsList[0].userId}}" data-othername="{{currentGoodsList[0].name}}">聊天</van-button>
       <van-button style="margin-left: 20rpx;" type="info" size="small" bindtap="purchaseHandle">购买</van-button>
     </view>
   </view>

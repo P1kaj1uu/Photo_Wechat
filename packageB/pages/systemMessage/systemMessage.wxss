@@ -1,0 +1,53 @@
+/* packageB/pages/systemMessage/systemMessage.wxss */
+.sys-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sys-list .sys-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.sys-list .sys-item .avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  width: 80rpx;
+  height: 80rpx;
+  font-size: 13px;
+  background-color: blue;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.sys-list .sys-item .admin {
+  margin-right: 5px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sys-list .sys-item .content {
+  margin-top: 20px;
+  max-width: 200px;
+  font-size: 14px;
+  color: red;
+}
+
+.sys-list .sys-item .time {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+}
+
+.sys-list .sys-item .delete {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 12px;
+  color: #888;
+}

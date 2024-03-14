@@ -1,6 +1,6 @@
 <!--packageA/pages/myPublish/myPublish.wxml-->
 <block wx:if="{{!authorGoodsList.length}}">
-  <van-empty description="暂无" />
+  <van-empty description="暂无发布" />
 </block>
 <block>
   <van-swipe-cell right-width="{{ 65 }}" wx:for="{{authorGoodsList}}" wx:key="id">

@@ -137,6 +137,51 @@ Page({
       }
     })
   },
+  // 聊天
+  chatHandle(e) {
+    let that = this;
+    let otherId = e.currentTarget.dataset.otherid;
+    let otherName = e.currentTarget.dataset.othername;
+    let chat = {
+      id: Math.round(Math.random() * 9999) + 1,
+      userId: that.data.userInfo.id,
+      createTime: that.getCurrentTime(),
+      content: "你好！请问可以聊聊吗？",
+      name: that.data.userInfo.name || that.data.userInfo.username,
+      otherId: otherId
+    }
+    wx.request({
+      url: app.globalData.siteBaseUrl + '/chat/add',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+        'X-Token': that.data.userInfo.token
+      },
+      data: JSON.stringify(chat),
+      success: function(res) {
+        console.log('新增聊天--->', res)
+        if (res.data.code === 401) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+          })
+          wx.setStorageSync('userInfo', null);
+          wx.navigateTo({
+            url: '../../../pages/login/login',
+          })
+          return;
+        }
+        if (res.data.code === 200) {
+          wx.showToast({
+            title: `已向${otherName}打招呼，可前往消息页查看`,
+            icon: 'none',
+            duration: 2000,
+          })
+        }
+      }
+    })
+  },
   // 购买
   purchaseHandle() {
     this.setData({

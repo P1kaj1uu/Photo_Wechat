@@ -1,6 +1,6 @@
 <!--packageA/pages/myPurchase/myPurchase.wxml-->
 <block wx:if="{{!purchaseGoodsList.length}}">
-  <van-empty description="暂无" />
+  <van-empty description="暂无订单" />
 </block>
 <block>
   <van-swipe-cell right-width="{{ 65 }}" wx:for="{{purchaseGoodsList}}" wx:key="id">

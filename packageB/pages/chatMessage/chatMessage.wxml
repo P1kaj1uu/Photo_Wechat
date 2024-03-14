@@ -1,0 +1,32 @@
+<!--packageB/pages/chatMessage/chatMessage.wxml-->
+<view class="chat-box">
+  <view class="chat-list" id="chat-scroll">
+    <view wx:for="{{chatDetailList}}" wx:key="id" class="{{item.userId === userInfo.id ? 'chat-item me' : 'chat-item other'}}">
+      <view class="{{item.userId === userInfo.id ? 'info' : 'info info-other'}}">
+        <view class="avatar">{{item.name[0]}}</view>
+        <view class="name">{{item.name}}</view>
+        <view class="time">{{item.createTime}}</view>
+      </view>
+      <view class="content">{{item.content}}</view>
+    </view>
+  </view>
+  <view class="chat-input">
+    <van-cell-group>
+      <van-field
+        value="{{ chatValue }}"
+        bind:input="changeValue"
+        center
+        clearable
+        title-width="35px"
+        label="聊天"
+        placeholder="请输入文本内容"
+        border="{{ false }}"
+        use-button-slot
+      >
+        <van-button slot="button" size="small" type="primary" bindtap="sendChat">
+          发送
+        </van-button>
+      </van-field>
+    </van-cell-group>
+  </view>
+</view>

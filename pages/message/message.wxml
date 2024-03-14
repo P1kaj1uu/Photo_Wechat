@@ -1,2 +1,25 @@
 <!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<van-cell
+  is-link
+  title="系统消息"
+  link-type="navigateTo"
+  url="../../packageB/pages/systemMessage/systemMessage"
+/>
+<block wx:if="{{!chatList.length}}">
+  <van-empty description="暂无聊天" />
+</block>
+<block wx:else>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{chatList}}" wx:key="id">
+    <van-cell-group>
+      <view style="display: flex; align-items: center; justify-content: space-between; padding: 0 10px; margin: 10rpx 0;">
+        <view style="display: flex; align-items: center; justify-content: center; position: relative;">
+          <view style="border-radius: 50%; background-color: blue; color: #fff; display: flex; align-items: center; justify-content: center; width: 100rpx; height: 100rpx; margin-right: 5px;">{{item.otherId}}</view>
+          <view style="font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200rpx;">用户{{item.otherId}}</view>
+        </view>
+        <view style="color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 240rpx; text-align: right;">{{item.content}}</view>
+        <view style="color: #ccc; font-size: 10px; position: absolute; bottom: 0; right: 0;">{{item.createTime}}</view>
+      </view>
+    </van-cell-group>
+    <view slot="right" style="background-color: green; color: #fff; display: flex; justify-content: center; align-items: center; font-size: 14px; font-weight: 600; height: 100%; width: 150rpx;" bindtap="replyChat" data-otherid="{{item.otherId}}">回复</view>
+  </van-swipe-cell>
+</block>

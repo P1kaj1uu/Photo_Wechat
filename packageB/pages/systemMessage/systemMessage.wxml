@@ -1,0 +1,15 @@
+<!--packageB/pages/systemMessage/systemMessage.wxml-->
+<block wx:if="{{!systemMessageList.length}}">
+  <van-empty description="暂无消息" />
+</block>
+<block wx:else>
+  <view class="sys-list">
+    <view class="sys-item" wx:for="{{systemMessageList}}" wx:key="id">
+      <view class="avatar">管</view>
+      <view class="admin">管理员</view>
+      <view class="content">{{item.content}}</view>
+      <view class="time">{{item.createTime}}</view>
+      <view class="delete" bindtap="deleteHandle" data-messageid="{{item.id}}">删除</view>
+    </view>
+  </view>
+</block>

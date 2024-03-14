@@ -17,6 +17,15 @@
         "pages/goodDetail/goodDetail"
       ],
       "independent": true
+    },
+    {
+      "root": "packageB",
+      "name": "分包B",
+      "pages": [
+        "pages/systemMessage/systemMessage",
+        "pages/chatMessage/chatMessage"
+      ],
+      "independent": true
     }
   ],
   "window": {

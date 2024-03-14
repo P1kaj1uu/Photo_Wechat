@@ -1,0 +1,91 @@
+/* packageB/pages/chatMessage/chatMessage.wxss */
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.chat-box .chat-list {
+  flex: 9;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 20px 5px 0;
+}
+
+.chat-box .chat-list .chat-item {
+  margin-bottom: 25px;
+  max-width: 50vw;
+}
+
+.chat-item .content {
+  margin-top: 3px;
+  padding: 16rpx;
+  font-size: 15px;
+  background-color: #95ec69;
+  color: #000;
+  word-break: break-all;
+}
+
+.me .content {
+  border-radius: 20px 20px 5px 20px;
+}
+
+.other .content {
+  border-radius: 20px 20px 20px 5px;
+}
+
+.chat-box .chat-list .me {
+  align-self: flex-start;
+}
+
+.chat-list .info {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.chat-list .info-other {
+  justify-content: flex-end;
+}
+
+.info .avatar {
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: blue;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.info .name {
+  font-weight: 600;
+}
+
+.other .content {
+  text-align: right;
+}
+
+.info .time {
+  position: absolute;
+  top: -40rpx;
+  color: #ccc;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.info-other .time {
+  right: 0;
+}
+
+.chat-box .chat-list .other {
+  align-self: flex-end;
+}
+
+.chat-box .chat-input {
+  background-color: green;
+  flex: 1;
+}
