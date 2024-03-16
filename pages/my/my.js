@@ -79,9 +79,9 @@ Page({
     let check = {
       id: Math.round(Math.random() * 9999) + 1,
       username: that.data.userInfo.username,
-      isPass: 0,
+      isPass: 1,
       content: that.data.stuId.trim(),
-      type: that.data.currentTitle === '学生' ? "学生验证" : "摄影师认证",
+      type: that.data.currentTitle === '学生' ? 1 : 2,
       userId: that.data.userInfo.id,
     }
     wx.request({

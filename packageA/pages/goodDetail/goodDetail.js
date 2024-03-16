@@ -300,9 +300,9 @@ Page({
     let check = {
       id: Math.round(Math.random() * 9999) + 1,
       username: that.data.userInfo.username,
-      isPass: 0,
+      isPass: 1,
       content: content,
-      type: "举报投诉",
+      type: 3,
       userId: that.data.userInfo.id,
     }
     wx.request({
