@@ -6,6 +6,7 @@ Page({
    */
   data: {
     userInfo: null,
+    userAvatar: null,
     isShowStu: false,
     isShowPho: false,
     stuId: '',
@@ -145,6 +146,7 @@ Page({
    */
   onShow() {
     this.setData({
+      userAvatar: wx.getStorageSync('userAvatar'),
       userInfo: wx.getStorageSync('userInfo')
     })
   },

@@ -1,6 +1,7 @@
 <!--pages/my/my.wxml-->
 <view class="userinfo" bindtap="viewUserInfo">
-  <view class="userinfo-avatar init-avatar">{{ userInfo.name ? userInfo.name[0] : userInfo.username[0] }}</view>
+  <image class="userinfo-avatar init-avatar" wx:if="{{userAvatar}}" src="{{userAvatar}}"></image>
+  <view wx:else="" class="userinfo-avatar init-avatar">{{ userInfo.name ? userInfo.name[0] : userInfo.username[0] }}</view>
   <text class="userinfo-nickname">{{userInfo.name || userInfo.username}}</text>
 </view>
 
@@ -29,12 +30,13 @@
   <text class="my_c_text">{{ userInfo.isPhoIdentify === 1 ? '已认证摄影师身份' : '认证摄影师身份' }}</text>
 </view>
 
-<van-popup show="{{ isShowStu }}" round position="bottom" custom-style="height: 15%" bind:close="onClose">
+<van-popup show="{{ isShowStu }}" round position="bottom" bind:close="onClose">
   <van-cell-group>
     <van-field value="{{ stuId }}" center clearable label="用户认证" placeholder="输入学号/身份证" border="{{ false }}" use-button-slot bind:input="changeStuId">
       <van-button slot="button" size="small" type="primary" bindtap="checkStuInfo">
         开始验证
       </van-button>
     </van-field>
+    <van-field wx:if="{{currentTitle !== '学生'}}" center clearable label="作品编号" placeholder="输入作品编号" border="{{ false }}"></van-field>
   </van-cell-group>
 </van-popup>

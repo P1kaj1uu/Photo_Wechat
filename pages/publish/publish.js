@@ -7,9 +7,16 @@ Page({
    */
   data: {
     userInfo: null,
-    count: 1, //设置只能传1张图片
+    count: 3, //设置只能传1张图片
     img_url: [],
     hideAdd: 0,
+    price: '',
+    title: '',
+    content: '',
+    phone: '',
+    type: '',
+    position: '',
+    continueTime: ''
   },
   checkPhone(e) {
     let regx = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
@@ -119,7 +126,14 @@ Page({
           // 发布成功后，删除新增的图片
           that.setData({
             img_url:[],
-            hideAdd: 0
+            hideAdd: 0,
+            price: '',
+            title: '',
+            content: '',
+            phone: '',
+            type: '',
+            position: '',
+            continueTime: '',
           })
           // 跳到首页
           wx.switchTab({
@@ -169,7 +183,7 @@ Page({
       return;
     }
     // 判断是否为数字
-    if (Number.isNaN(parseInt(price)) || Number.isNaN(parseInt(continueTime))) {
+    if (Number.isNaN(Number(price)) || Number.isNaN(Number(continueTime))) {
       wx.showToast({
         title: "发布失败，价格天数应该为数字",
         icon: 'none',
@@ -268,14 +282,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    
   },
 
   /**

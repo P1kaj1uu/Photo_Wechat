@@ -12,6 +12,7 @@
     <van-cell title="摄影师" value="{{userInfo.isPhoIdentify === '1' ? '已认证' : '未认证'}}" />
   </van-cell-group>
   <view class="btns">
+    <van-button type="info" size="small" bindtap="avatarHandle">随机头像</van-button>
     <van-button type="primary" size="small" bindtap="infoHandle">修改资料</van-button>
     <van-button type="primary" size="small" bindtap="passwordHandle">修改密码</van-button>
     <van-button type="danger" size="small" bindtap="logoutHandle">退出登录</van-button>

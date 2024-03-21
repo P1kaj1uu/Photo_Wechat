@@ -1,8 +1,8 @@
 <!--packageB/pages/chatMessage/chatMessage.wxml-->
 <view class="chat-box">
   <view class="chat-list" id="chat-scroll">
-    <view wx:for="{{chatDetailList}}" wx:key="id" class="{{item.userId === userInfo.id ? 'chat-item me' : 'chat-item other'}}">
-      <view class="{{item.userId === userInfo.id ? 'info' : 'info info-other'}}">
+    <view wx:for="{{chatDetailList}}" wx:key="id" class="{{(item.name === userInfo.username || item.name === userInfo.name) ? 'chat-item me' : 'chat-item other'}}">
+      <view class="{{(item.name === userInfo.username || item.name === userInfo.name) ? 'info' : 'info info-other'}}">
         <view class="avatar">{{item.name[0]}}</view>
         <view class="name">{{item.name}}</view>
         <view class="time">{{item.createTime}}</view>

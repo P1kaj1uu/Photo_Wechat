@@ -16,6 +16,16 @@ Page({
   async sleep(t) {
     return new Promise((resolve) => setTimeout(resolve, t));
   },
+  avatarHandle() {
+    let avatarList = ['../../static/images/avatar1.jpg', '../../static/images/avatar2.jpg', '../../static/images/avatar3.jpg', '../../static/images/avatar4.jpg', '../../static/images/avatar5.jpg', '../../static/images/avatar6.jpg'];
+    let randomAvatar = avatarList[Math.floor(Math.random() * avatarList.length)];
+    wx.setStorageSync('userAvatar', randomAvatar);
+    wx.showToast({
+      title: "设置随机头像成功",
+      icon: 'none',
+      duration: 2000,
+    })
+  },
   passwordHandle() {
     this.setData({
       isShowPassword: true
@@ -99,6 +109,7 @@ Page({
       duration: 2000,
     })
     wx.setStorageSync('userInfo', null);
+    wx.setStorageSync('userAvatar', null);
     wx.navigateTo({
       url: '../../../pages/login/login',
     })
@@ -125,6 +136,15 @@ Page({
       default:
         break;
     }
+  },
+  onClose() {
+    this.setData({
+      isShowInfo: false,
+      isShowPassword: false,
+      name: '',
+      info: '',
+      password: ''
+    })
   },
   // 确认修改密码
   changePassword() {

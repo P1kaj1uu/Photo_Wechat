@@ -13,6 +13,7 @@
       <view class="weui-cell__bd">
         <van-field
           name="title"
+          value="{{ title }}"
           clearable
           placeholder="请输入约拍标题"
           border="{{ false }}"
@@ -26,6 +27,7 @@
       <view class="weui-cell__bd">
         <van-field
           name="content"
+          value="{{ content }}"
           clearable
           placeholder="请输入约拍内容"
           border="{{ false }}"
@@ -40,6 +42,7 @@
         <van-field
           bind:input="changeNum"
           name="price"
+          value="{{ price }}"
           type="digit"
           clearable
           placeholder="请输入约拍价格"
@@ -55,6 +58,7 @@
         <van-field
           bind:input="changeNum"
           name="continuetime"
+          value="{{ continueTime }}"
           type="digit"
           clearable
           placeholder="请输入约拍天数"
@@ -69,6 +73,7 @@
       <view class="weui-cell__bd">
         <van-field
           name="position"
+          value="{{ position }}"
           clearable
           placeholder="请输入约拍地点"
           border="{{ false }}"
@@ -82,6 +87,7 @@
       <view class="weui-cell__bd">
         <van-field
           name="type"
+          value="{{ type }}"
           clearable
           placeholder="请输入约拍类型"
           border="{{ false }}"
@@ -96,6 +102,7 @@
         <van-field
           bind:input="checkPhone"
           name="phone"
+          value="{{ phone }}"
           clearable
           type="number"
           placeholder="请输入手机号码"
@@ -110,7 +117,7 @@
     </view>
 
     <view class="image_content">
-      <view class='image' wx:for="{{img_url}}">
+      <view class='image' wx:for="{{img_url}}" wx:key="index">
         <image class="moment_img" mode="aspectFill" data-index='{{index}}' src="{{item}}" bindtap="previewImg"></image>
       </view>
       <view class='image' style='display:{{hideAdd ?"none" : "block"}}'>
