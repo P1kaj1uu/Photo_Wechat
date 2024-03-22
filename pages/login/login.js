@@ -184,6 +184,7 @@ Page({
             return;
           } else {
             wx.setStorageSync('userInfo', res.data.data);
+            wx.setStorageSync('userAvatar', null);
             wx.showToast({
               title: '登录成功',
               icon: 'none',
